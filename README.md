@@ -22,7 +22,7 @@ This project is inspired by [timminator/VideOCR](https://github.com/timminator/V
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/VideOCR-GLM-CLI.git
+git clone https://github.com/Benson-mk/VideOCR-GLM-CLI.git
 cd VideOCR-GLM-CLI
 ```
 
