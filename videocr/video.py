@@ -236,7 +236,8 @@ class Video:
                                 img, self.ollama_host, self.ollama_port,
                                 self.ollama_model, self.ollama_timeout, self.lang,
                                 frame_index=frame_index, zone_idx=zone_idx,
-                                log_payload=True, log_response=True
+                                log_payload=utils._OCR_PAYLOAD_LOG, 
+                                log_response=utils._OCR_RESPONSE_LOG
                             )
                             
                             if is_valid and ocr_text:

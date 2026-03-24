@@ -15,6 +15,50 @@ _OCR_RESPONSE_LOG_PATH = None  # Path to log file for raw OCR API responses
 _OCR_PAYLOAD_LOG_PATH = None   # Path to log file for OCR API request payloads
 
 
+def enable_ocr_logging(response: bool = True, payload: bool = True, log_image: bool = False) -> None:
+    """
+    Enable OCR logging for debugging purposes.
+    
+    This function controls the creation of OCR-specific log files:
+    - ocr_raw_responses.log: Logs raw OCR API responses
+    - ocr_api_payloads.log: Logs OCR API request payloads
+    
+    Args:
+        response: Enable logging of OCR API responses (default: True)
+        payload: Enable logging of OCR API request payloads (default: True)
+        log_image: Include base64 image data in payload logs (default: False - can be very large)
+    
+    Note:
+        Log files are created in:
+        - Windows: %LOCALAPPDATA%\\VideOCR\\
+        - Linux/Mac: ~/.config/VideOCR/
+    """
+    from . import utils
+    utils.enable_ocr_logging(response=response, payload=payload, log_image=log_image)
+
+
+def disable_ocr_logging() -> None:
+    """
+    Disable all OCR logging to prevent log file creation.
+    
+    This stops the creation of both ocr_raw_responses.log and ocr_api_payloads.log files.
+    Useful for production use or when debugging is not needed.
+    """
+    from . import utils
+    utils.disable_ocr_logging()
+
+
+def is_ocr_logging_enabled() -> bool:
+    """
+    Check if OCR logging is currently enabled.
+    
+    Returns:
+        True if OCR logging is enabled, False otherwise
+    """
+    from . import utils
+    return utils.is_ocr_logging_enabled()
+
+
 def setup_logging(
     log_level: int = logging.INFO,
     log_to_file: bool = False,

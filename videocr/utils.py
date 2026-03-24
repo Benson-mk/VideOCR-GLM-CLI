@@ -21,6 +21,7 @@ from .lang_dictionaries import (
 _OCR_RESPONSE_LOG = False
 _OCR_PAYLOAD_LOG = False
 _OCR_PAYLOAD_LOG_IMAGE = False
+_OCR_LOGGING_ENABLED = False  # Master switch for all OCR logging
 
 # Maximum log file size: 10MB
 _MAX_LOG_BYTES = 10 * 1024 * 1024
@@ -31,6 +32,36 @@ _OCR_RESPONSE_LOGGER = None
 _OCR_PAYLOAD_LOGGER = None
 _OCR_RESPONSE_LOG_PATH = None
 _OCR_PAYLOAD_LOG_PATH = None
+
+
+def enable_ocr_logging(response: bool = True, payload: bool = True, log_image: bool = False) -> None:
+    """
+    Enable OCR logging for debugging purposes.
+    
+    Args:
+        response: Enable logging of OCR API responses
+        payload: Enable logging of OCR API request payloads
+        log_image: Include base64 image data in payload logs (can be very large)
+    """
+    global _OCR_LOGGING_ENABLED, _OCR_RESPONSE_LOG, _OCR_PAYLOAD_LOG, _OCR_PAYLOAD_LOG_IMAGE
+    _OCR_LOGGING_ENABLED = True
+    _OCR_RESPONSE_LOG = response
+    _OCR_PAYLOAD_LOG = payload
+    _OCR_PAYLOAD_LOG_IMAGE = log_image
+
+
+def disable_ocr_logging() -> None:
+    """Disable all OCR logging to prevent log file creation."""
+    global _OCR_LOGGING_ENABLED, _OCR_RESPONSE_LOG, _OCR_PAYLOAD_LOG, _OCR_PAYLOAD_LOG_IMAGE
+    _OCR_LOGGING_ENABLED = False
+    _OCR_RESPONSE_LOG = False
+    _OCR_PAYLOAD_LOG = False
+    _OCR_PAYLOAD_LOG_IMAGE = False
+
+
+def is_ocr_logging_enabled() -> bool:
+    """Check if OCR logging is currently enabled."""
+    return _OCR_LOGGING_ENABLED
 
 
 def _get_log_dir() -> str:
