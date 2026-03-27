@@ -4,13 +4,19 @@
 
 Extract hardcoded subtitles from videos!
 
+> [!TIP]
+> ### 🖥️ Prefer a Graphical Interface?
+> Check out **[VideOCR-GLM](https://github.com/Benson-mk/VideOCR-GLM)** — the full suite featuring a **Desktop App (Electron)** and **Web GUI (Vue 3)** for a much easier, visual experience. It includes real-time queue management, visual cropping, and bundled installers.
+
+---
+
 ## ℹ About
 
 Extract hardcoded (burned-in) subtitles from videos via command line by utilizing the [GLM-OCR](https://github.com/zai-org/GLM-OCR) OCR engine through the Ollama API. Everything can be easily configured via command-line parameters.
 
 This project is inspired by [timminator/VideOCR](https://github.com/timminator/VideOCR) but replaces PaddleOCR with GLM-OCR for improved text recognition capabilities.
 
-## Setup
+## 🚀 Setup
 
 ### Prerequisites
 
@@ -43,7 +49,7 @@ ollama pull glm-ocr:latest
 ollama serve
 ```
 
-## Usage
+## 📖 Usage
 
 Run the script from the command line with the required parameters:
 
@@ -63,11 +69,11 @@ For a complete list of available parameters, run:
 python videocr_glm_cli.py --help
 ```
 
-## Performance
+## 📊 Performance
 
 The OCR process speed depends on your Ollama setup and hardware. Using a GPU-accelerated Ollama instance is recommended for better performance. The GLM-OCR model provides excellent text recognition accuracy, especially for mixed-language content.
 
-## Tips
+## 💡 Tips
 
 When cropping, leave a bit of buffer space above and below the text to ensure accurate readings, but also don't make the box too large.
 
@@ -79,7 +85,7 @@ When cropping, leave a bit of buffer space above and below the text to ensure ac
 | `frames_to_skip` | Higher number | Lower number | For perfectly accurate timestamps this parameter needs to be set to 0. |
 | `SSIM threshold` | Lower threshold | Higher Threshold | If the SSIM between consecutive frames exceeds this threshold, the frame is considered similar and skipped for OCR. A lower value can greatly reduce the number of images OCR needs to be performed on. |
 
-## Command Line Parameters
+## ⚙️ Command Line Parameters
 
 ### Video Parameters
 
@@ -183,7 +189,7 @@ When cropping, leave a bit of buffer space above and below the text to ensure ac
   
   Allow the system to sleep during processing. When set to `false`, the system will be kept awake during the entire OCR process.
 
-## Acknowledgments
+## 🙏 Acknowledgments
 
 This project is inspired by and based on the excellent work of:
 
