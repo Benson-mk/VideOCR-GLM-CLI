@@ -6,11 +6,19 @@
 # nuitka-project-if: {OS} == "Linux":
 #     nuitka-project: --output-filename=videocr-cli.bin
 
+__version__ = "1.0.1"
+
 import argparse
 import logging
 import os
 import sys
 from contextlib import nullcontext
+
+# Set console encoding to UTF-8 for Windows to handle special characters
+if sys.platform == 'win32':
+    import codecs
+    sys.stdout = codecs.getwriter('utf-8')(sys.stdout.buffer, 'strict')
+    sys.stderr = codecs.getwriter('utf-8')(sys.stderr.buffer, 'strict')
 
 from wakepy import keep
 

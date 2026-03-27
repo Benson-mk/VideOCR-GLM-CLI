@@ -287,7 +287,19 @@ class Video:
                     current_frame.end_index = next_frame.start_index - 1
             
             if frames:
-                frames[-1].end_index = ocr_end - 1
+                # Check for blank frames after the last subtitle
+                last_frame = frames[-1]
+                blank_frames_after_last = [
+                    bf for bf in blank_frames 
+                    if bf > last_frame.start_index
+                ]
+                
+                if blank_frames_after_last:
+                    # Set end index to just before the first blank frame after the last subtitle
+                    last_frame.end_index = blank_frames_after_last[0] - 1
+                else:
+                    # No blank frames after the last subtitle, use the end of the video
+                    last_frame.end_index = ocr_end - 1
             
             frame_predictions_by_zone[zone_idx] = frames
 
